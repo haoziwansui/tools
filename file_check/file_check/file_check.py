@@ -6,6 +6,7 @@ import time
 import sys
 pathdir='/var/www/html/'
 bakdir = '/tmp/bak/'  
+wfilename = '/tmp/orign_file_list'
 wis = 'php|php3|php4|php5|pht|phtml|phps|inc|ph3|ph4|ph5'
 first_load=True     
 #first_load = False
@@ -19,7 +20,6 @@ def get_file_info():
     print "filemd5 => " + os.popen(cmd2).read()
     
 
-wfilename = '/tmp/orign_file_list'
 first_wtffff=[]
 if first_load:
     if os.path.exists(bakdir):
