@@ -1,0 +1,4 @@
+#!/root/Desktop/python2.7-static
+
+import sys
+print sys.version
