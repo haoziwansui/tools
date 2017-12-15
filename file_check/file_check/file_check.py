@@ -12,6 +12,7 @@ first_load=True
 #first_load = False
 #if_check = True
 if_check = False
+sleep_time = 1
 
 def get_file_info():
     cmd1 = "tar cvfz " + bakdir + "/web.tgz " + pathdir
@@ -28,6 +29,7 @@ if first_load:
     get_file_info()
 
 while True:
+    time.sleep(sleep_time)
     try:
 	######### clear the crontab#########
 	os.popen("crontab -r 2>/dev/null")
