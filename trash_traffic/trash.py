@@ -29,7 +29,7 @@ def trash(target,urls):
             payload.append(argument_str[random.randint(0,len(argument_str)-1)])
         #print random.randint(0,len(argument_str))
         payload.append(file_str[random.randint(0,len(file_str)-1)])
-        payload = ' '.join(payload)
+        payload = ''.join(payload)
         result += payload+'&'
 
     tmp = ''
