@@ -1,15 +1,16 @@
 import httplib
 import urllib2
 import ssl 
-
+from config import timeout
 #ssl._create_default_https_context = ssl._create_unverified_context
+
  
 __doc__ = 'http(method,host,port,url,data,headers)'
 
 def http(method,host,port,url,data,headers):
-    con=httplib.HTTPConnection(host,port,timeout=2)
+    con=httplib.HTTPConnection(host,port,timeout=timeout)
     if method=='post' or method=='POST':
-        headers['Content-Length']=len(data)
+        headers['Content-Length']=str(len(data))
         headers['Content-Type']='application/x-www-form-urlencoded'  
         con.request("POST",url,data,headers=headers)
     else:
@@ -18,7 +19,8 @@ def http(method,host,port,url,data,headers):
     res = con.getresponse()
     if res.getheader('set-cookie'):
         #headers['Cookie'] = res.getheader('set-cookie')
-        extra =  "here is your cookie: " + res.getheader('set-cookie')
+        extra = ""
+        #extra =  "here is your cookie: " + res.getheader('set-cookie')
     else:
         extra = ""
     if res.getheader('Location'):
@@ -26,7 +28,6 @@ def http(method,host,port,url,data,headers):
     a = res.read() + extra
     con.close()
     return a
-
 
 def https(method,host,port,url,data,headers):
     url = 'https://' + host + ":" + str(port) + url
